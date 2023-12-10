@@ -9,7 +9,7 @@
             "url": "https://github.com/Samuel-droid-hue/BakeryAPI/tree/main/server"
         }
     },
-    "host": "localhost:3000",
+    "host": "bakery-dhxy.onrender.com",
     "basePath": "",
     "tags": [
         {
@@ -38,7 +38,7 @@
         }
     ],
     "schemes": [
-        "http"
+        "https"
     ],
     "consumes": [
         "application/json"
