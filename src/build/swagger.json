@@ -1,0 +1,806 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Bakery API",
+        "description": "Esta es la documentacion de la API para el sistema de una panaderia online con servicio a domicilio.",
+        "license": {
+            "name": "SIGC",
+            "url": "https://github.com/Samuel-droid-hue/BakeryAPI/tree/main/server"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "Usuarios",
+            "description": "API para obtener informacion acerca de los usuarios de la plataforma."
+        },
+        {
+            "name": "Autenticacion",
+            "description": "API para obtener autenticaciones utilizadas en la plataforma."
+        },
+        {
+            "name": "Productos",
+            "description": "API para obtener informacion acerca los productos de la panaderia."
+        },
+        {
+            "name": "Categorias de Productos",
+            "description": "API para obtener informacion acerca de las categorias de los productos."
+        },
+        {
+            "name": "Cesta de Compras",
+            "description": "API para obtener la informacion acerca de la cesta de compras de un usuario."
+        },
+        {
+            "name": "Lista de Ventas",
+            "description": "API para obtener la informacion acercad de las ventas realizadas en la plataforma."
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/users/": {
+            "get": {
+                "tags": ["Usuarios"],
+                "summary": "Obtener una lista de los usuarios",
+                "description": "<html>Este servicio devuelve una lista completa de todos los usuarios registrados en la plataforma.<br><br>Proporciona información detallada, incluyendo: <br> <ul> <li>Nombre completo</li><li>Direccion de correo electrónico</li><li>Número de teléfono</li><li>Direccion</li><li>Rol de usuario</li></ul></html>.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": [
+                            {
+                                "id": 1,
+                                "full_name": "Ejemplo Nombre",
+                                "email": "correo@ejemplo.com",
+                                "password": "secreto",
+                                "phone_number": "123456789",
+                                "address": "Ejemplo Dirección",
+                                "role": 1
+                            },
+                            {
+                                "id": 2,
+                                "full_name": "Otro Ejemplo",
+                                "email": "otro@ejemplo.com",
+                                "password": "secreto2",
+                                "phone_number": "987654321",
+                                "address": "Otra Dirección",
+                                "role": 2
+                            }
+                        ],
+                        "schema": {
+                            "$ref": "#/definitions/usuario"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Registro de nuevo usuario",
+                "description": "<html>Este servicio permite agregar un nuevo usuario a la plataforma.<br><br>Debera proporcionar la información detallada del usuario: <ul><li>Nombre completo</li><li>Correo electrónico</li><li>Contraseña</li><li>Número de teléfono</li><li>Dirección</li><li>Rol</li></ul></html>",
+                "produces": ["application/json"],
+                "tags": ["Usuarios"],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "Usuario a agregar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/nuevoUsuario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": ["Usuarios"],
+                "summary": "Ver un usuario especifico existente en la plataforma",
+                "description": "Servicio que permite ver la <em>información</em> detallada de un <strong>usuario específico</strong>. <br> <br>Este servicio devuelve la información completa, incluyendo ID, nombre completo, correo electrónico, contraseña, número de teléfono, dirección y rol. <br> <br> **Nota:** Se requiere el ID del usuario como parámetro en la ruta.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 3,
+                                    "full_name": "Ejemplo de Nombre",
+                                    "email": "correo@ejemplo.com",
+                                    "password": "ejemplo",
+                                    "phone_number": "123456789",
+                                    "address": "Dirección de Ejemplo",
+                                    "role": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/usuario"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del usuario",
+                        "type": "number",
+                        "default": 1
+                    }
+                ]
+            },
+            "put": {
+                "tags": ["Usuarios"],
+                "summary": "Modifica la información de un usuario",
+                "description": "Este servicio permite realizar modificaciones en la <em>información</em> de un <strong>usuario existente</strong>. <br> <br>Para utilizar este servicio, envía una solicitud con los datos actualizados del usuario. La respuesta contendrá la información modificada. <br> <br> **Nota:** Asegúrate de proporcionar todos los campos necesarios en la solicitud, incluyendo el ID del usuario que se va a modificar.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "type": "number",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "usuario",
+                        "in": "body",
+                        "description": "Usuario a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/nuevoUsuario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Usuarios"],
+                "summary": "Eliminar a un usuario",
+                "description": "Este servicio permite eliminar a un <strong>usuario</strong> de la plataforma. <br> <br> Al utilizar este servicio, se eliminarán todos los datos asociados con el usuario especificado. <br> <br> **Nota:** Esta acción es irreversible y eliminará permanentemente la cuenta del usuario.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "type": "number",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/auth/": {
+            "get": {
+                "tags": ["Autenticacion"],
+                "summary": "Obtiene la autenticacion de login.",
+                "description": "Este servicio devuelve a un usuario en caso de este exista y sea logeado con las credenciales correctas.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 3,
+                            "full_name": "Ejemplo de Nombre",
+                            "email": "correo@ejemplo.com",
+                            "password": "ejemplo",
+                            "phone_number": "123456789",
+                            "address": "Dirección de Ejemplo",
+                            "role": "Rol del ejemplo"
+                        }, "schema": {
+                            "$ref": "#/definitions/usuario"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Email",
+                        "in": "query",
+                        "requiere": true,
+                        "required": true,
+                        "description": "Correo electronico del usuario.",
+                        "type": "string",
+                        "default": "None"
+                    },
+                    {
+                        "name": "Password",
+                        "in": "query",
+                        "requiere": true,
+                        "required": true,
+                        "description": "Contrasena del usuario.",
+                        "type": "string",
+                        "default": "None"
+                    }
+                ]
+            }
+        },
+        "/api/products/": {
+            "get": {
+                "tags": ["Productos"],
+                "summary": "Lista de todos los productos en exhibición.",
+                "description": "Este servicio devuelve una lista completa de los <strong>productos en exhibición</strong> disponibles en la plataforma. <br> <br>Proporciona información detallada, incluyendo: <br><ul><li>Nombre del producto</li><li>Descripción</li><li>Precio</li> <li>Cantidad</li><li>Categoria</li></ul>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "name": "Ejemplo producto 1",
+                            "description": "Descripcion del producto 1",
+                            "price": 2.34,
+                            "quantity_available": 2,
+                            "category": "Categoria del producto"
+                        }, "schema": {
+                            "$ref": "#/definitions/producto"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Productos"],
+                "summary": "Registro de un nuevo producto.",
+                "description": "Este servicio permite agregar un nuevo producto a la plataforma.<br><br>Debera proporcionar la siguiente informacion detallada del producto: <br><br> <ul><li>Nombre del producto</li><li>Descripcion del producto</li><li>Precio</li><li>Cantidad en stock</li><li>Categoria</li></ul>",
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "body",
+                        "description": "Producto a agregar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/nuevoProducto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "get": {
+                "tags": ["Productos"],
+                "summary": "Lista la informacion de un solo producto.",
+                "description": "Este servicio devuelve la <em>información</em> detallada de un <strong>unico producto específico</strong>. <br> <br>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "name": "Ejemplo producto 1",
+                            "description": "Descripcion del producto 1",
+                            "price": 2.34,
+                            "quantity_available": 2,
+                            "category": "Categoria del producto"
+                        }, "schema": {
+                            "$ref": "#/definitions/producto"
+                        }
+                    }, "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del pan",
+                        "type": "number",
+                        "default": 1
+                    }
+                ]
+            },
+            "put": {
+                "tags": ["Productos"],
+                "summary": "Modifica la información de un producto",
+                "description": "Este servicio permite realizar modificaciones en la <em>información</em> de un <strong>producto existente</strong>. <br> <br>Para utilizar este servicio, envía una solicitud con los datos actualizados del producto. La respuesta contendrá la información modificada. <br> <br> **Nota:** Asegúrate de proporcionar todos los campos necesarios en la solicitud, incluyendo el ID del producto que se va a modificar.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto",
+                        "type": "number",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "producto",
+                        "in": "body",
+                        "description": "Producto a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/nuevoProducto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Productos"],
+                "summary": "Eliminar un producto",
+                "description": "Este servicio permite eliminar un <strong>producto</strong> de la plataforma. <br> <br> Al utilizar este servicio, se eliminarán todos los datos asociados con el producto especificado. <br> <br> **Nota:** Esta acción es irreversible y eliminará permanentemente el producto de la plataforma.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto",
+                        "type": "number",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/products/filter/{category}": {
+            "get": {
+                "tags": ["Productos"],
+                "summary": "Lista la informacion de productos de una determinada categoria.",
+                "description": "Este servicio devuelve la <em>información</em> detallada de <strong>productos relacionados con la categoria específicada</strong>. <br> <br>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "name": "Ejemplo producto 1",
+                            "description": "Descripcion del producto 1",
+                            "price": 2.34,
+                            "quantity_available": 2,
+                            "category": "Categoria del producto"
+                        }, "schema": {
+                            "$ref": "#/definitions/producto"
+                        }
+                    }, "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID categoria del producto",
+                        "type": "number",
+                        "default": 0
+                    }
+                ]
+            }
+        },
+        "/api/others/categories/": {
+            "get": {
+                "tags": ["Categorias de Productos"],
+                "description": "Servicio que devuelve una lista de las categorias de un pan",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "Example Category 1"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "Example Category 2"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/otros"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/baskets/{id}": {
+            "get": {
+                "tags": ["Cesta de Compras"],
+                "summary": "Lista la informacion de productos de una cesta de compras.",
+                "description": "Este servicio devuelve la <em>información</em> detallada de <strong>productos relacionados con una cesta de compras de usuario</strong>. <br> <br>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "name": "Ejemplo producto 1",
+                            "description": "Descripcion del producto 1",
+                            "price": 2.34,
+                            "quantity_available": 2,
+                            "category": "Categoria del producto"
+                        }, "schema": {
+                            "$ref": "#/definitions/producto"
+                        }
+                    }, "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del usuario",
+                        "type": "number",
+                        "default": 0
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Confirmacion de la compra",
+                "description": "<html>Este servicio permite agregar un nuevo registro de compra.<br><br>Debera proporcionar id del cliente.</html>",
+                "produces": ["application/json"],
+                "tags": ["Cesta de Compras"],
+                "parameters": [
+                    {
+                        "name": "id_client",
+                        "in": "query",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/nuevoUsuario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/baskets/": {
+            "post": {
+                "tags": ["Cesta de Compras"],
+                "summary": "Registro de un nuevo producto en la cesta de compras.",
+                "description": "Este servicio permite agregar un nuevo producto a la cesta de compras.<br><br>Debera proporcionar la siguiente informacion: <br><br> <ul><li>ID del usuario</li><li>ID del producto</li><li>Precio</li><li>Cantidad del producto</li></ul>",
+                "parameters": [
+                    {
+                        "name": "id_client",
+                        "in": "query",
+                        "description": "ID del cliente",
+                        "required": true,
+                        "type": "number",
+                        "default": 0
+                    },
+                    {
+                        "name": "id_product",
+                        "in": "query",
+                        "description": "ID del producto",
+                        "required": true,
+                        "type": "number",
+                        "default": 0
+                    },
+                    {
+                        "name": "quantity",
+                        "in": "query",
+                        "description": "Cantidad del producto",
+                        "required": true,
+                        "type": "number",
+                        "default": 0
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Cesta de Compras"],
+                "summary": "Eliminar un producto de la cesta de compras",
+                "description": "Este servicio permite eliminar un <strong>producto</strong> de la cesta de compras de un usuario. <br> <br> Al utilizar este servicio, se eliminarán todos las cantidades asociadadas con el producto especificado.",
+                "parameters": [
+                    {
+                        "name": "id_client",
+                        "in": "query",
+                        "description": "ID del cliente",
+                        "type": "number",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "id_product",
+                        "in": "query",
+                        "description": "ID del producto",
+                        "type": "number",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/others/sales/{id}": {
+            "get": {
+                "tags": ["Lista de Ventas"],
+                "summary": "Lista todos las compras realizadas por un usuario.",
+                "description": "Este servicio devuelve una lista completa de los <strong>montos de compra por un usuario</strong>. <br> <br>",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID del cliente",
+                        "type": "number",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "id_client": 1,
+                            "sale_date": "2021-09-90",
+                            "total": 90
+                        }, "schema": {
+                            "$ref": "#/definitions/venta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/others/sales/": {
+            "get": {
+                "tags": ["Lista de Ventas"],
+                "summary": "Lista todos las compras realizadas por todos los usuarios.",
+                "description": "Este servicio devuelve una lista completa de los <strong>montos de compra por todos los usuarios</strong>. <br> <br>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "id_client": 1,
+                            "sale_date": "2021-09-90",
+                            "total": 90
+                        }, "schema": {
+                            "$ref": "#/definitions/venta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "usuario": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "Codigo unico que permite identificar al usuario."
+                },
+                "full_name": {
+                    "type": "string",
+                    "description": "Nombre del usuario."
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Correo electronico del usuario."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contrasena del usuario."
+                },
+                "phone_number": {
+                    "type": "string",
+                    "description": "Numero telefonico del usuario."
+                },
+                "address": {
+                    "type": "string",
+                    "description": "Direccion del domicilio del usuario."
+                },
+                "role": {
+                    "type": "number",
+                    "description": "ID del rol del usuario."
+                }
+            }
+        },
+        "usuarios": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/usuario"
+            }
+        },
+        "nuevoUsuario": {
+            "type": "object",
+            "properties": {
+                "full_name": {
+                    "type": "string",
+                    "description": "Nombre del usuario."
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Correo electronico del usuario."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contrasena del usuario."
+                },
+                "phone_number": {
+                    "type": "string",
+                    "description": "Numero telefonico del usuario."
+                },
+                "address": {
+                    "type": "string",
+                    "description": "Direccion del domicilio del usuario."
+                },
+                "role": {
+                    "type": "number",
+                    "description": "ID del rol del usuario."
+                }
+            }
+        },
+        "producto": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID del producto"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Nombre del producto"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Descripcion acerca del producto"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Precio del producto"
+                },
+                "quantity_available": {
+                    "type": "number",
+                    "description": "Cantidad disponible en stock"
+                },
+                "category": {
+                    "type": "number",
+                    "description": "ID de la categoria del producto"
+                }
+            }
+        },
+        "nuevoProducto": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Nombre del producto"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Descripcion acerca del producto"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Precio del producto"
+                },
+                "quantity_available": {
+                    "type": "number",
+                    "description": "Cantidad disponible en stock"
+                },
+                "category": {
+                    "type": "number",
+                    "description": "ID de la categoria del producto"
+                }
+            }
+        },
+        "otros": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID del objeto"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Nombre del objeto"
+                }
+            }
+        },
+        "venta": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "id del la venta"
+                },
+                "id_client": {
+                    "type": "number",
+                    "description": "Id del cliente"
+                },
+                "sale_date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Fecha de la venta"
+                },
+                "total": {
+                    "type": "number",
+                    "format": "decimal",
+                    "description": "Total de la compra realizada"
+                }
+            }
+        }
+    }
+}
