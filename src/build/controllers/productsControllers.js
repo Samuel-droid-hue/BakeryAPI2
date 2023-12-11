@@ -52,7 +52,7 @@ class ProductsControllers {
     }
     createItem(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
+            const { id } = req.body;
             const answer = yield database_1.default.query('INSERT INTO BakeryItems set ?', [req.body, id]);
             res.json(answer);
         });

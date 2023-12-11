@@ -36,7 +36,7 @@ class ProductsControllers {
     }
 
     public async createItem(req: Request, res: Response): Promise<void> {
-        const {id} = req.params;
+        const {id} = req.body;
         const answer = await pool.query('INSERT INTO BakeryItems set ?', [req.body, id]);
         res.json(answer);
     }
