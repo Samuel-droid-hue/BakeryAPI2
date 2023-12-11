@@ -455,6 +455,29 @@
                         "description": "Prohibido"
                     }
                 }
+            },
+            "post": {
+                "tags": ["Categorias de Productos"],
+                "summary": "Registro de una nueva categoria de producto.",
+                "description": "Este servicio permite agregar una nueva categoria de producto al sistema.<br><br>",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nombre de la categoria",
+                        "required": true,
+                        "type": "string",
+                        "default": "None"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
             }
         },
         "/api/baskets/{id}": {

@@ -40,5 +40,12 @@ class OthersControllers {
             res.json(answer);
         });
     }
+    createCategory(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { name } = req.query;
+            const answer = yield database_1.default.query('INSERT INTO CategoriesItems (name) VALUES (?)', [name]);
+            res.json(answer);
+        });
+    }
 }
 exports.othersControllers = new OthersControllers();

@@ -9,10 +9,11 @@ class OthersRoutes {
     }
 
     config(): void {
-        this.router.get('/categories', othersControllers.getCategories);
+        this.router.get('/categories/', othersControllers.getCategories);
         this.router.get('/sales/:id',othersControllers.getSale);
         this.router.get('/sales/',othersControllers.getSales);
         this.router.get('/roles/', othersControllers.getRoles);
+        this.router.post('/categories/', othersControllers.createCategory)
     }
 }
 

@@ -22,6 +22,12 @@ class OthersControllers {
         const answer = await pool.query('SELECT * FROM Roles');
         res.json(answer);
     }
+
+    public async createCategory(req: Request, res: Response): Promise<void> {
+        const {name} = req.query;
+        const answer = await pool.query('INSERT INTO CategoriesItems (name) VALUES (?)', [name]);
+        res.json(answer)
+    }
 }
 
 export const othersControllers = new OthersControllers();
