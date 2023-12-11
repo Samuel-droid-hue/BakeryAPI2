@@ -10,11 +10,11 @@ class ProductsRoutes {
     config() {
         this.router.get('/', productsControllers_1.productsControllers.getItems);
         this.router.get('/allProducts/', productsControllers_1.productsControllers.getAll);
+        this.router.get('/filter/', productsControllers_1.productsControllers.filterItemByCategory);
         this.router.get('/:id', productsControllers_1.productsControllers.getItem);
         this.router.post('/', productsControllers_1.productsControllers.createItem);
         this.router.put('/:id', productsControllers_1.productsControllers.updateItem);
         this.router.delete('/:id', productsControllers_1.productsControllers.deleteItem);
-        this.router.get('/filter/', productsControllers_1.productsControllers.filterItemByCategory);
     }
 }
 const productsRoutes = new ProductsRoutes();
