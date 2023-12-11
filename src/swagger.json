@@ -193,7 +193,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "description": "ID del usuario",
                         "type": "number",
                         "required": true,
@@ -428,7 +428,7 @@
                 ]
             }
         },
-        
+
         "/api/others/categories/": {
             "get": {
                 "tags": ["Categorias de Productos"],

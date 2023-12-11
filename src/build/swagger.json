@@ -193,7 +193,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "description": "ID del usuario",
                         "type": "number",
                         "required": true,

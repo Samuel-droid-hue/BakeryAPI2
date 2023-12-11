@@ -71,8 +71,8 @@ class UsersControllers {
     }
     deleteUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const answer = yield database_1.default.query(`DELETE FROM Users WHERE id = ${id}`);
+            const { id } = req.query;
+            const answer = yield database_1.default.query(`DELETE FROM Users WHERE id = ?`, [id]);
             res.json(answer);
         });
     }

@@ -55,8 +55,8 @@ class UsersControllers {
     }
 
     public async deleteUser(req: Request, res: Response): Promise<void> {
-        const {id} = req.params;
-        const answer = await pool.query(`DELETE FROM Users WHERE id = ${id}`);
+        const {id} = req.query;
+        const answer = await pool.query(`DELETE FROM Users WHERE id = ?`, [id]);
         res.json(answer);
     }
 }
