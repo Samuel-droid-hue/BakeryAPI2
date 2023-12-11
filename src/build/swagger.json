@@ -419,7 +419,7 @@
                 "parameters": [
                     {
                         "name": "category",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "description": "ID categoria del producto",
                         "type": "number",

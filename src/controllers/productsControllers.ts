@@ -54,7 +54,7 @@ class ProductsControllers {
     }
 
     public async filterItemByCategory(req: Request, res: Response): Promise<void> {
-        const {category} = req.params;
+        const {category} = req.query;
         const answer = await pool.query(`SELECT
             BakeryItems.id, 
             BakeryItems.name, 
@@ -66,7 +66,7 @@ class ProductsControllers {
             JOIN CategoriesItems ON BakeryItems.category = CategoriesItems.id
             WHERE BakeryItems.quantity_available > 0 AND BakeryItems.category = ?`, [category]);
             if(answer.length > 0) {
-                res.json(answer[0]);
+                res.json(answer);
                 return;
             }
             res.status(404).json({'message':'No existen productos de esta categoria!'});
