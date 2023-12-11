@@ -14,7 +14,7 @@ class ProductsRoutes {
         this.router.post('/', productsControllers_1.productsControllers.createItem);
         this.router.put('/:id', productsControllers_1.productsControllers.updateItem);
         this.router.delete('/:id', productsControllers_1.productsControllers.deleteItem);
-        this.router.get('/filter/:category', productsControllers_1.productsControllers.filterItemByCategory);
+        this.router.get('/filter/', productsControllers_1.productsControllers.filterItemByCategory);
     }
 }
 const productsRoutes = new ProductsRoutes();
