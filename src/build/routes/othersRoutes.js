@@ -11,6 +11,7 @@ class OthersRoutes {
         this.router.get('/categories', othersControllers_1.othersControllers.getCategories);
         this.router.get('/sales/:id', othersControllers_1.othersControllers.getSale);
         this.router.get('/sales/', othersControllers_1.othersControllers.getSales);
+        this.router.get('/roles/', othersControllers_1.othersControllers.getRoles);
     }
 }
 const othersRoutes = new OthersRoutes();

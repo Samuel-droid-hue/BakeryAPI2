@@ -648,7 +648,7 @@
             "get": {
                 "tags": ["Roles de Usuario"],
                 "summary": "Lista los roles de un usuario.",
-                "description": "Este servicio devuelve una lista completa de los <strong>roles de todos los usuarios</strong>. <br> <br>",
+                "description": "Este servicio devuelve una lista completa de los <strong>roles de los usuarios</strong>. <br> <br>",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -666,7 +666,6 @@
             }
         }
     },
-
     "definitions": {
         "usuario": {
             "type": "object",

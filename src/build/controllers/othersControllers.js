@@ -34,5 +34,11 @@ class OthersControllers {
             res.json(answer);
         });
     }
+    getRoles(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const answer = yield database_1.default.query('SELECT * FROM Roles');
+            res.json(answer);
+        });
+    }
 }
 exports.othersControllers = new OthersControllers();

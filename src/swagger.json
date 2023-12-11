@@ -428,6 +428,7 @@
                 ]
             }
         },
+        
         "/api/others/categories/": {
             "get": {
                 "tags": ["Categorias de Productos"],
@@ -457,6 +458,7 @@
                 }
             }
         },
+
         "/api/baskets/{id}": {
             "get": {
                 "tags": ["Cesta de Compras"],
@@ -490,6 +492,7 @@
                     }
                 ]
             },
+
             "post": {
                 "summary": "Confirmacion de la compra",
                 "description": "<html>Este servicio permite agregar un nuevo registro de compra.<br><br>Debera proporcionar id del cliente.</html>",
@@ -516,6 +519,7 @@
                 }
             }
         },
+
         "/api/baskets/": {
             "post": {
                 "tags": ["Cesta de Compras"],
@@ -588,6 +592,7 @@
                 }
             }
         },
+
         "/api/others/sales/{id}": {
             "get": {
                 "tags": ["Lista de Ventas"],
@@ -621,6 +626,7 @@
                 }
             }
         },
+
         "/api/others/sales/": {
             "get": {
                 "tags": ["Lista de Ventas"],
@@ -644,11 +650,12 @@
                 }
             }
         },
+
         "/api/others/roles/": {
             "get": {
                 "tags": ["Roles de Usuario"],
                 "summary": "Lista los roles de un usuario.",
-                "description": "Este servicio devuelve una lista completa de los <strong>roles de todos los usuarios</strong>. <br> <br>",
+                "description": "Este servicio devuelve una lista completa de los <strong>roles de los usuarios</strong>. <br> <br>",
                 "responses": {
                     "200": {
                         "description": "OK",
