@@ -4,6 +4,7 @@ import pool from "../database";
 class AuthControllers {
     public async getUsers(req: Request, res: Response): Promise<void> {
         const {email, password} = req.query;
+        console.log(req.query);
         const answer = await pool.query('SELECT * FROM Users WHERE email = ? AND password = ?', [email, password]);
 
         if(answer.length > 0) {

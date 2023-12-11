@@ -18,6 +18,7 @@ class AuthControllers {
     getUsers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { email, password } = req.query;
+            console.log(req.query);
             const answer = yield database_1.default.query('SELECT * FROM Users WHERE email = ? AND password = ?', [email, password]);
             if (answer.length > 0) {
                 res.json(answer[0]);
