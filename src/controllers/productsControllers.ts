@@ -71,6 +71,19 @@ class ProductsControllers {
             }
             res.status(404).json({'message':'No existen productos de esta categoria!'});
     }
+
+    public async getAllItems(req: Request, res: Response): Promise<void> {
+        const answer = await pool.query(`SELECT 
+            BakeryItems.id, 
+            BakeryItems.name, 
+            BakeryItems.description, 
+            BakeryItems.price, 
+            BakeryItems.quantity_available, 
+            CategoriesItems.name AS category
+        FROM BakeryItems
+        JOIN CategoriesItems ON BakeryItems.category = CategoriesItems.id`);
+        res.json(answer);
+    }
 }
 
 export const productsControllers = new ProductsControllers();

@@ -428,7 +428,31 @@
                 ]
             }
         },
-
+        "/api/products/allProducts/": {
+            "get": {
+                "tags": ["Productos"],
+                "summary": "Lista de todos los productos de la plataforma.",
+                "description": "Este servicio devuelve una lista completa de los <strong>productos sin importar si no estan en exhibicion</strong> disponibles en la plataforma. <br> <br>Proporciona información detallada, incluyendo: <br><ul><li>Nombre del producto</li><li>Descripción</li><li>Precio</li> <li>Cantidad</li><li>Categoria</li></ul>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "name": "Ejemplo producto 1",
+                            "description": "Descripcion del producto 1",
+                            "price": 2.34,
+                            "quantity_available": 2,
+                            "category": "Categoria del producto"
+                        }, "schema": {
+                            "$ref": "#/definitions/producto"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
         "/api/others/categories/": {
             "get": {
                 "tags": ["Categorias de Productos"],
