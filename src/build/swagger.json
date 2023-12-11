@@ -284,7 +284,6 @@
                 "tags": ["Productos"],
                 "summary": "Registro de un nuevo producto.",
                 "description": "Este servicio permite agregar un nuevo producto a la plataforma.<br><br>Debera proporcionar la siguiente informacion detallada del producto: <br><br> <ul><li>Nombre del producto</li><li>Descripcion del producto</li><li>Precio</li><li>Cantidad en stock</li><li>Categoria</li></ul>",
-                "produces": ["application/json"],
                 "parameters": [
                     {
                         "name": "product",
