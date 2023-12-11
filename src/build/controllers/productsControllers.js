@@ -91,7 +91,7 @@ class ProductsControllers {
             res.status(404).json({ 'message': 'No existen productos de esta categoria!' });
         });
     }
-    getAllItems(req, res) {
+    getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const answer = yield database_1.default.query(`SELECT 
             BakeryItems.id, 

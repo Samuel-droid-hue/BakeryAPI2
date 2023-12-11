@@ -72,7 +72,7 @@ class ProductsControllers {
             res.status(404).json({'message':'No existen productos de esta categoria!'});
     }
 
-    public async getAllItems(req: Request, res: Response): Promise<void> {
+    public async getAll(req: Request, res: Response): Promise<void> {
         const answer = await pool.query(`SELECT 
             BakeryItems.id, 
             BakeryItems.name, 
