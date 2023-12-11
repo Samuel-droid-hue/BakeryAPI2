@@ -6,7 +6,7 @@ class AuthControllers {
         const {email, password} = req.query;
         console.log(req.query);
         const answer = await pool.query('SELECT * FROM Users WHERE email = ? AND password = ?', [email, password]);
-
+        console.log(answer);
         if(answer.length > 0) {
             res.json(answer[0]);
             return;
