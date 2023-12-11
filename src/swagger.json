@@ -394,7 +394,7 @@
                 }
             }
         },
-        "/api/products/filter/{category}": {
+        "/api/products/filter/": {
             "get": {
                 "tags": ["Productos"],
                 "summary": "Lista la informacion de productos de una determinada categoria.",
