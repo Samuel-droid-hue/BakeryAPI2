@@ -287,12 +287,12 @@
                 "produces": ["application/json"],
                 "parameters": [
                     {
-                        "name": "nuevoProducto",
+                        "name": "product",
                         "in": "body",
                         "description": "Producto a agregar",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/nuevoProducto"
+                            "$ref": "#/definitions/producto"
                         }
                     }
                 ],
