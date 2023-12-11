@@ -17,6 +17,11 @@ class OthersControllers {
         const answer = await pool.query('SELECT * FROM Sales WHERE id_client');
         res.json(answer);
     }
+
+    public async getRoles(req: Request, res:Response): Promise<void> {
+        const answer = await pool.query('SELECT * FROM Roles');
+        res.json(answer);
+    }
 }
 
 export const othersControllers = new OthersControllers();

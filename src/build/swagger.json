@@ -34,7 +34,11 @@
         },
         {
             "name": "Lista de Ventas",
-            "description": "API para obtener la informacion acercad de las ventas realizadas en la plataforma."
+            "description": "API para obtener la informacion acerca de las ventas realizadas en la plataforma."
+        },
+        {
+            "name": "Roles de Usuario",
+            "description": "API para obtener la informacion acerca de los roles de usuario"
         }
     ],
     "schemes": [
@@ -639,8 +643,30 @@
                     }
                 }
             }
+        },
+        "/api/others/roles/": {
+            "get": {
+                "tags": ["Roles de Usuario"],
+                "summary": "Lista los roles de un usuario.",
+                "description": "Este servicio devuelve una lista completa de los <strong>roles de todos los usuarios</strong>. <br> <br>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "name": "Ejemplo"
+                        }, "schema": {
+                            "$ref": "#/definitions/otros"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
         }
     },
+
     "definitions": {
         "usuario": {
             "type": "object",
