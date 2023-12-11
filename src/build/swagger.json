@@ -236,7 +236,7 @@
                 },
                 "parameters": [
                     {
-                        "name": "Email",
+                        "name": "email",
                         "in": "query",
                         "requiere": true,
                         "required": true,
@@ -245,7 +245,7 @@
                         "default": "None"
                     },
                     {
-                        "name": "Password",
+                        "name": "password",
                         "in": "query",
                         "requiere": true,
                         "required": true,
