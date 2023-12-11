@@ -9,7 +9,7 @@
             "url": "https://github.com/Samuel-droid-hue/BakeryAPI/tree/main/server"
         }
     },
-    "host": "localhost:3000",
+    "host": "bakery-dhxy.onrender.com",
     "basePath": "",
     "tags": [
         {
@@ -34,21 +34,23 @@
         },
         {
             "name": "Lista de Ventas",
-            "description": "API para obtener la informacion acercad de las ventas realizadas en la plataforma."
+            "description": "API para obtener la informacion acerca de las ventas realizadas en la plataforma."
+        },
+        {
+            "name": "Roles de Usuario",
+            "description": "API para obtener la informacion acerca de los roles de usuario"
         }
     ],
     "schemes": [
-        "http"
+        "https"
     ],
     "consumes": [
         "application/json"
-    ], 
+    ],
     "produces": [
         "application/json"
     ],
-
     "paths": {
-
         "/api/users/": {
             "get": {
                 "tags": ["Usuarios"],
@@ -86,7 +88,6 @@
                     }
                 }
             },
-
             "post": {
                 "summary": "Registro de nuevo usuario",
                 "description": "<html>Este servicio permite agregar un nuevo usuario a la plataforma.<br><br>Debera proporcionar la información detallada del usuario: <ul><li>Nombre completo</li><li>Correo electrónico</li><li>Contraseña</li><li>Número de teléfono</li><li>Dirección</li><li>Rol</li></ul></html>",
@@ -113,7 +114,6 @@
                 }
             }
         },
-
         "/api/users/{id}": {
             "get": {
                 "tags": ["Usuarios"],
@@ -154,7 +154,6 @@
                     }
                 ]
             },
-
             "put": {
                 "tags": ["Usuarios"],
                 "summary": "Modifica la información de un usuario",
@@ -187,7 +186,6 @@
                     }
                 }
             },
-
             "delete": {
                 "tags": ["Usuarios"],
                 "summary": "Eliminar a un usuario",
@@ -212,10 +210,9 @@
                 }
             }
         },
-
         "/api/auth/": {
             "get": {
-                "tags": ["Autenticacion"], 
+                "tags": ["Autenticacion"],
                 "summary": "Obtiene la autenticacion de login.",
                 "description": "Este servicio devuelve a un usuario en caso de este exista y sea logeado con las credenciales correctas.",
                 "responses": {
@@ -259,10 +256,9 @@
                 ]
             }
         },
-
         "/api/products/": {
             "get": {
-                "tags": ["Productos"], 
+                "tags": ["Productos"],
                 "summary": "Lista de todos los productos en exhibición.",
                 "description": "Este servicio devuelve una lista completa de los <strong>productos en exhibición</strong> disponibles en la plataforma. <br> <br>Proporciona información detallada, incluyendo: <br><ul><li>Nombre del producto</li><li>Descripción</li><li>Precio</li> <li>Cantidad</li><li>Categoria</li></ul>",
                 "responses": {
@@ -284,7 +280,6 @@
                     }
                 }
             },
-
             "post": {
                 "tags": ["Productos"],
                 "summary": "Registro de un nuevo producto.",
@@ -310,7 +305,6 @@
                 }
             }
         },
-
         "/api/products/{id}": {
             "get": {
                 "tags": ["Productos"],
@@ -344,7 +338,6 @@
                     }
                 ]
             },
-
             "put": {
                 "tags": ["Productos"],
                 "summary": "Modifica la información de un producto",
@@ -377,7 +370,6 @@
                     }
                 }
             },
-
             "delete": {
                 "tags": ["Productos"],
                 "summary": "Eliminar un producto",
@@ -402,7 +394,6 @@
                 }
             }
         },
-
         "/api/products/filter/{category}": {
             "get": {
                 "tags": ["Productos"],
@@ -437,7 +428,6 @@
                 ]
             }
         },
-
         "/api/others/categories/": {
             "get": {
                 "tags": ["Categorias de Productos"],
@@ -467,7 +457,6 @@
                 }
             }
         },
-
         "/api/baskets/{id}": {
             "get": {
                 "tags": ["Cesta de Compras"],
@@ -527,7 +516,6 @@
                 }
             }
         },
-
         "/api/baskets/": {
             "post": {
                 "tags": ["Cesta de Compras"],
@@ -541,7 +529,7 @@
                         "required": true,
                         "type": "number",
                         "default": 0
-                    }, 
+                    },
                     {
                         "name": "id_product",
                         "in": "query",
@@ -568,7 +556,6 @@
                     }
                 }
             },
-
             "delete": {
                 "tags": ["Cesta de Compras"],
                 "summary": "Eliminar un producto de la cesta de compras",
@@ -601,10 +588,9 @@
                 }
             }
         },
-
         "/api/others/sales/{id}": {
             "get": {
-                "tags": ["Lista de Ventas"], 
+                "tags": ["Lista de Ventas"],
                 "summary": "Lista todos las compras realizadas por un usuario.",
                 "description": "Este servicio devuelve una lista completa de los <strong>montos de compra por un usuario</strong>. <br> <br>",
                 "parameters": [
@@ -635,10 +621,9 @@
                 }
             }
         },
-
         "/api/others/sales/": {
             "get": {
-                "tags": ["Lista de Ventas"], 
+                "tags": ["Lista de Ventas"],
                 "summary": "Lista todos las compras realizadas por todos los usuarios.",
                 "description": "Este servicio devuelve una lista completa de los <strong>montos de compra por todos los usuarios</strong>. <br> <br>",
                 "responses": {
@@ -651,6 +636,27 @@
                             "total": 90
                         }, "schema": {
                             "$ref": "#/definitions/venta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/others/roles/": {
+            "get": {
+                "tags": ["Roles de Usuario"],
+                "summary": "Lista los roles de un usuario.",
+                "description": "Este servicio devuelve una lista completa de los <strong>roles de todos los usuarios</strong>. <br> <br>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "id": 1,
+                            "name": "Ejemplo"
+                        }, "schema": {
+                            "$ref": "#/definitions/otros"
                         }
                     },
                     "403": {
@@ -736,7 +742,7 @@
                 "id": {
                     "type": "number",
                     "description": "ID del producto"
-                }, 
+                },
                 "name": {
                     "type": "string",
                     "description": "Nombre del producto"
