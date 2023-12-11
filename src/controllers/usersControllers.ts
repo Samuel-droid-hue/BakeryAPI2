@@ -49,7 +49,7 @@ class UsersControllers {
     }
 
     public async updateUser(req: Request, res: Response): Promise<void> {
-        const {id} = req.params;
+        const {id} = req.query;
         const answer = await pool.query('UPDATE Users SET ? WHERE id = ?', [req.body, id]);
         res.json(answer);
     }
