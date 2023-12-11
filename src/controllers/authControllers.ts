@@ -5,7 +5,7 @@ class AuthControllers {
     public async getUsers(req: Request, res: Response): Promise<void> {
         const {email, password} = req.query;
         console.log(req.query);
-        const answer = await pool.query('SELECT * FROM Users WHERE email = ? AND password = ?', [email, password]);
+        const answer = await pool.query('SELECT * FROM Users WHERE email = :email AND password = :password', { email, password });
         console.log(answer);
         if(answer.length > 0) {
             res.json(answer[0]);
