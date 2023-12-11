@@ -47,7 +47,7 @@ class ProductsControllers {
                 res.json(answer[0]);
                 return;
             }
-            res.status(404).json({ 'message': 'Producto no existente en exhibicion!' });
+            res.status(404).json({ 'message': 'Producto no existente en exhibicion!XD' });
         });
     }
     createItem(req, res) {
