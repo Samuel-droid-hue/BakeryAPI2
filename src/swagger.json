@@ -96,7 +96,7 @@
                 "parameters": [
                     {
                         "name": "user",
-                        "in": "path",
+                        "in": "body",
                         "description": "Usuario a agregar",
                         "required": true,
                         "schema": {

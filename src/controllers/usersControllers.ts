@@ -43,7 +43,7 @@ class UsersControllers {
     }
 
     public async createUser(req: Request, res: Response): Promise<void> {
-        const {id} = req.params;
+        const {id} = req.body;
         const answer = await pool.query('INSERT INTO Users set ?', [req.body, id]);
         res.json(answer);
     }
