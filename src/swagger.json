@@ -453,6 +453,7 @@
                 }
             }
         },
+        
         "/api/others/categories/": {
             "get": {
                 "tags": ["Categorias de Productos"],
